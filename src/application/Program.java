@@ -2,10 +2,7 @@ package application;
 
 import entities.*;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
-import java.util.Scanner;
+import java.util.*;
 
 public class Program {
 
@@ -22,15 +19,28 @@ public class Program {
         ListaInstrutores.add(instrutor1);
         ListaInstrutores.add(instrutor2);
 
-
+        String name = "";
+        int idade = 0;
 
         System.out.println("BEM-VINDO À ACADEMIA.  ");
-        System.out.print("Digite se nome: ");
-        String name = sc.nextLine();
-        System.out.print("Digite sua idade: ");
-        int idade = sc.nextInt();
-        System.out.println();
+        System.out.print("Digite seu nome: ");
+        name = sc.nextLine();
 
+        boolean idadeValida = false;
+
+        while (!idadeValida) {
+
+            try {
+                System.out.print("Digite sua idade: ");
+                idade = sc.nextInt();
+                idadeValida = true;
+            } catch (InputMismatchException e) {
+                System.out.println("Erro! Digite um número inteiro.");
+                sc.nextLine();
+            }
+        }
+
+        System.out.println();
         System.out.println("A mensalidade esta no valor de R$150,00, qual sera sua forma de pagamento:");
         System.out.println("PIX = (P)");
         System.out.println("BOLETO = (B)");
@@ -98,7 +108,7 @@ public class Program {
                         ", seu instrutor será: " +
                         i.getName());
                 encontrou = true;
-                break; // Para a busca assim que encontrar o primeiro
+                break;
             }
         }
 
